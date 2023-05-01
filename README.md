@@ -1,5 +1,4 @@
-# DRF recipes api
-a Recipe Api that lets people search for recipes
+# DRF api template
 Technologies:
 -Django
 -Django Rest Framework

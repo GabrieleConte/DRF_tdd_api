@@ -158,7 +158,10 @@ class PrivateRecipeAPITests(TestCase):
 
     def test_update_user_returns(self):
         """Test changing a recipe user returns error"""
-        new_user = create_user(email='user2@example.com', password='testpass123')
+        new_user = create_user(
+            email='user2@example.com',
+            password='testpass123'
+        )
         recipe = create_recipe(user=self.user)
         payload = {'user': new_user.id}
         url = detail_url(recipe.id)

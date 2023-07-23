@@ -4,6 +4,8 @@ Test models
 
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from decimal import Decimal
+from .. import models
 
 
 class ModelTests(TestCase):
@@ -41,3 +43,18 @@ class ModelTests(TestCase):
     def test_new_user_without_email_raises_error(self):
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user('', '123')
+
+    def test_create_recipe(self):
+        """Test creating a recipe successfully"""
+        user = get_user_model().objects.create_user(
+            'test@example.com',
+            'testpass123'
+        )
+        recipe = models.Recipe.objects.create(
+            user=user,
+            title="Sample recipe name",
+            time_minutes=5,
+            price=Decimal('5.50'),
+            description="Sample description"
+        )
+        self.assertEqual(str(recipe), recipe.title)
